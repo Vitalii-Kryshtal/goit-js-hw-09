@@ -53,11 +53,13 @@ if (localStorage.getItem('feedback-form-state')) {
 
 form.addEventListener('submit', event => {
   event.preventDefault();
-  if (emailInput.value && messageInput.value) {
-    console.log(formData);
-    form.reset();
-    localStorage.removeItem('feedback-form-state');
+  if (!emailInput.value || !messageInput.value) {
+    alert(`Fill please all fields`);
     return;
   }
-  alert(`Fill please all fields`);
+  console.log(formData);
+  localStorage.removeItem('feedback-form-state');
+  formData.email = '';
+  formData.message = '';
+  form.reset();
 });
